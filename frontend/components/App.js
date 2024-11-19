@@ -65,6 +65,11 @@ export default function App() {
     // If something goes wrong, check the status of the response:
     // if it's a 401 the token might have gone bad, and we should redirect to login.
     // Don't forget to turn off the spinner!
+    // const token = localStorage.getItem('token')
+    // if (!token) {
+    //   redirectToLogin()
+    //   return
+    // }
     setMessage('')
     setSpinnerOn(true)
     const token = localStorage.getItem('token')
@@ -73,10 +78,12 @@ export default function App() {
       headers: { Authorization: token }
     })
       .then(res => {
-        setArticles(res.data)
-        setMessage('Articles retrieved successfully')
+        console.log('Articles response:', res.data) // Add this to check response
+        setArticles(res.data.articles)
+        setMessage(res.data.message)
       })
       .catch(err => {
+        console.log('Error fetching articles:', err) // Add this to check errors
         if (err.response?.status === 401) {
           redirectToLogin()
         }

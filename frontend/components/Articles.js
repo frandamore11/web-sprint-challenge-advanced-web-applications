@@ -12,6 +12,8 @@ export default function Articles(props) {
     currentArticleId
   } = props
 
+  console.log('Articles received:', articles) // Debug log
+
   // ✨ implement conditional logic: if no token exists
   // we should render a Navigate to login screen (React Router v.6)
   if (!localStorage.getItem('token')) {
@@ -20,6 +22,7 @@ export default function Articles(props) {
 
   useEffect(() => {
     // ✨ grab the articles here, on first render only
+    console.log('Fetching articles...') // Debug log
     getArticles()
   }, []) // Empty dependency array for first render only
 
@@ -30,6 +33,7 @@ export default function Articles(props) {
         !articles.length
           ? 'No articles yet'
           : articles.map(art => {
+            console.log('Rendering article:', art) // Debug log
             return (
               <div className="article" key={art.article_id}>
                 <div>
