@@ -172,6 +172,9 @@ export default function App() {
       })
   }
 
+  const currentArticle = articles.find(art => art.article_id === currentArticleId)
+
+
   return (
     // ✨ fix the JSX: `Spinner`, `Message`, `LoginForm`, `ArticleForm` and `Articles` expect props ❗
     <>
@@ -189,7 +192,7 @@ export default function App() {
           <Route path="articles" element={
             <>
               <ArticleForm 
-                currentArticleId={currentArticleId}
+                currentArticle={currentArticle}
                 setCurrentArticleId={setCurrentArticleId}
                 postArticle={postArticle}
                 updateArticle={updateArticle}
